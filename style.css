@@ -1,0 +1,78 @@
+/* --- AJUSTEMENTS POUR LE RESPONSIVE --- */
+
+/* Conteneur principal plus flexible */
+#main-content {
+    padding: 15px;
+    max-width: 900px;
+    margin: auto;
+    width: 95%; /* Prend presque tout l'écran sur mobile */
+}
+
+/* La zone de texte doit s'adapter */
+textarea {
+    height: 150px;
+    resize: none; /* Évite de casser le layout sur mobile */
+    font-size: 16px; /* Évite le zoom auto sur iPhone */
+}
+
+/* La ligne Algo/Clé passe en colonne sur mobile */
+.config-row {
+    display: flex;
+    flex-wrap: wrap; /* Permet le retour à la ligne */
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.field {
+    flex: 1;
+    min-width: 250px; /* Force le passage à la ligne si l'écran est étroit */
+}
+
+/* Boutons adaptés au tactile */
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+    padding: 18px 10px; /* Plus haut pour cliquer facilement avec le pouce */
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Media Query pour les petits écrans (Phones) */
+@media (max-width: 600px) {
+    .glitch {
+        font-size: 2.5rem; /* Réduit la taille du titre d'intro */
+    }
+    
+    header h2 {
+        font-size: 1.2rem;
+    }
+
+    .actions {
+        flex-direction: column; /* Boutons l'un sur l'autre sur mobile */
+    }
+    
+    button {
+        width: 100%;
+    }
+
+    .status-bar {
+        font-size: 0.7rem;
+    }
+}
+
+/* Animation de scan line (effet vieux moniteur CRT) */
+.terminal::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+}
