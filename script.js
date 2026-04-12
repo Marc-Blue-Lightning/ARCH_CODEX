@@ -1,21 +1,26 @@
 // --- ANIMATION D'INTRO ---
-window.addEventListener('load', () => {
-    const loadingText = document.getElementById('loading-text');
-    const texts = ["Accès serveur...", "Bypass Pare-feu...", "Décryptage noyau...", "BIENVENUE."];
-    let i = 0;
+// Remplace ton bloc window.addEventListener('load'...) par celui-ci :
 
-    const interval = setInterval(() => {
-        loadingText.innerText = texts[i];
-        i++;
-        if (i >= texts.length) {
-            clearInterval(interval);
-            setTimeout(() => {
-                document.getElementById('intro-screen').classList.add('hidden');
-                document.getElementById('main-content').classList.remove('hidden');
-            }, 1000);
-        }
-    }, 800);
+window.addEventListener('load', () => {
+    const intro = document.getElementById('intro-screen');
+    const main = document.getElementById('main-content');
+
+    // 1. On attend que l'animation de texte finisse (environ 3 secondes)
+    setTimeout(() => {
+        // 2. On fait disparaître l'intro
+        intro.classList.add('exit-intro');
+        
+        // 3. On affiche l'interface principale
+        main.style.display = 'block';
+        
+        // 4. On lance l'animation d'entrée de l'interface
+        setTimeout(() => {
+            main.classList.add('fade-in');
+        }, 100);
+        
+    }, 3500); // Temps total de l'intro en millisecondes
 });
+
 
 // --- CORE CRYPTO ENGINE ---
 
