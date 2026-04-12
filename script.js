@@ -23,21 +23,42 @@ function execute(isCipher) {
     const msg = document.getElementById('message').value.toUpperCase();
     const key = document.getElementById('key').value.toUpperCase();
     const algo = document.getElementById('algo-select').value;
-    let out = "";
+    const resultBox = document.getElementById('result');
 
-    try {
-        switch(algo) {
-            case "cesar": out = algoCesar(msg, parseInt(key), isCipher); break;
-            case "vigenere": out = algoVigenere(msg, key, isCipher); break;
-            case "affine": out = algoAffine(msg, key, isCipher); break;
-            case "autokey": out = algoAutoKey(msg, key, isCipher); break;
-            case "playfair": out = algoPlayfair(msg, key, isCipher); break;
-        }
-        document.getElementById('result').innerText = out;
-    } catch(e) {
-        document.getElementById('result').innerText = "ERREUR: Paramètres invalides.";
+    if (!msg) {
+        resultBox.innerText = "ERREUR: AUCUN MESSAGE_";
+        return;
     }
+
+    // Petit effet de chargement "hacker"
+    resultBox.innerText = "CALCUL EN COURS...";
+    
+    setTimeout(() => {
+        try {
+            let out = "";
+            switch(algo) {
+                case "cesar": out = algoCesar(msg, parseInt(key) || 0, isCipher); break;
+                case "vigenere": out = algoVigenere(msg, key, isCipher); break;
+                case "affine": out = algoAffine(msg, key, isCipher); break;
+                case "autokey": out = algoAutoKey(msg, key, isCipher); break;
+                case "playfair": out = algoPlayfair(msg, key, isCipher); break;
+            }
+            
+            // On affiche le résultat en vert brillant
+            resultBox.innerHTML = `<span style="color: white; background: #008000; padding: 2px 5px;">RÉSULTAT:</span><br><br>${out}`;
+            
+            // Vibration sur mobile (si supporté)
+            if (navigator.vibrate) navigator.vibrate(50);
+            
+            // Scroll automatique vers le résultat pour mobile
+            resultBox.scrollIntoView({ behavior: 'smooth' });
+
+        } catch(e) {
+            resultBox.innerText = "ERREUR: PARAMÈTRES INCORRECTS_";
+        }
+    }, 400); // 400ms de "faux" calcul pour le style
 }
+
 
 // 1. CESAR
 function algoCesar(t, k, cipher) {

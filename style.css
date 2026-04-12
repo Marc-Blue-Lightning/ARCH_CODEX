@@ -76,3 +76,15 @@ button {
     background-size: 100% 2px, 3px 100%;
     pointer-events: none;
 }
+
+.result-box {
+    margin-top: 15px;
+    padding: 20px;
+    border: 2px solid var(--neon-green);
+    background: rgba(0, 255, 65, 0.05); /* Fond très légèrement vert */
+    min-height: 80px;
+    word-break: break-all;
+    font-weight: bold;
+    font-size: 1.2rem; /* Texte plus gros */
+    box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.2);
+}
