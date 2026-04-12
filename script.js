@@ -1,7 +1,7 @@
 // --- ANIMATION D'INTRO ---
 window.addEventListener('load', () => {
     const loadingText = document.getElementById('loading-text');
-    const texts = ["Accès serveur...", "Bypass Pare-feu...", "Décryptage noyau...", "BIENVENUE."];
+    const texts = ["Accès serveur...", "Bypass Pare-feu...", "Décryptage noyau...", "BIENVENUE.."];
     let i = 0;
 
     const interval = setInterval(() => {
